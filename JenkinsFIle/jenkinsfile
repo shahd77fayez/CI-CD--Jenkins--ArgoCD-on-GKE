@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = '{{DOCKERHUB_USERNAME}}/simple-node-app'
+        IMAGE_TAG = 'BUILD_NUMBER'
+        DOCKERHUB_USERNAME = credentials('dockerhub-username') // Jenkins Credentials ID (username)
+        DOCKERHUB_PASSWORD = credentials('dockerhub-password') // Jenkins Credentials ID (password)
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Cloning the source code from GitHub.'
+                git branch: 'main', url: 'https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo "Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker build . -f ./Dockerfile/dockerfile -t ${IMAGE_NAME}:${IMAGE_TAG}"
+            }
+        }
+
+        stage('Login to DockerHub') {
+            steps {
+                echo 'Logging in to DockerHub...'
+                sh """
+                    echo ${DOCKERHUB_PASSWORD} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin
+                """
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                echo "Pushing image to DockerHub..."
+                sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build and push completed successfully!'
+        }
+        failure {
+            echo 'Build or push failed!'
+        }
+    }
+}
