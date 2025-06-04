@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'shahdfayez06/simple-node-app'
-        IMAGE_TAG = '1.0'
+        IMAGE_TAG = '1.1'
     }
 
     stages {
