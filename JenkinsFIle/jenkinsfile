@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Cloning the source code from GitHub.'
-                git branch: 'main', url: 'https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE.git'
+                git url: 'https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE.git'
             }
         }
 
