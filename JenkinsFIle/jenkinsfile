@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
-                sh "docker build SourceCode -f ./dockerFile/dockerfile -t ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker build . -f ./dockerFile/dockerfile -t ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
 
