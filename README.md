@@ -53,7 +53,7 @@ Deploy a complete GitOps-driven CI/CD pipeline using Jenkins and ArgoCD on a Goo
     ```bash
     kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
     ```
-    add Image from Terimnal 
+    ![ image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/aad105677ddb0f362cd9526b8c51b590e2cdf69a/Images/argocd%20install%20and%20updater.png) 
 2. **Expose ArgoCD Server**:
     ```bash
     kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
@@ -68,6 +68,7 @@ Deploy a complete GitOps-driven CI/CD pipeline using Jenkins and ArgoCD on a Goo
     ```bash
         http://192.168.49.2:32043
     ```
+     ![ image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/Argo%20cd%20url%20aceess.png) 
 ---
 ## 📁 Step 3: Create & Organize GitHub Repositories
 
@@ -94,42 +95,44 @@ Deploy a complete GitOps-driven CI/CD pipeline using Jenkins and ArgoCD on a Goo
     ```
 2. **Create Jenkins Pipeline Job**:
     - Pipeline script from SCM → Link to App Repo
-        add image for jenkins scm
+        ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/Jenkins%20SCM%20to%20link%20repo.png)
     - Run Job:
-        add image for build sucess
+        ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/jenkins%20build%20success.png)
 ---
 ## 🔁 Step 5: Configure ArgoCD for CD
 1. **create application on ArgoCd**:
-    add image for app yaml
+    ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/application%20argo.png)
 ---
 ## 🔄 Step 6: Apply Argo CD Image Updater
 1. **Configure API access token secret**:
     ```bash
     kubectl create secret generic git-creds -n argocd --from-literal=username=<my-username> --from-literal=password=<PAT-Github>
     ```
-    add image from termial showing secret
+    ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/secrets%20of%20updater.png)
 2. **Configure Image Updater annotations**:
-    image show yaml after edit
+    ```bash
+        annotations:
+            argocd-image-updater.argoproj.io/image-list: shahdfayez06/simple-nodeapp
+            argocd-image-updater.argoproj.io/simple-node-app.update-strategy: latest
+            argocd-image-updater.argoproj.io/write-back-method: git:secret:argo/git-creds
+    ```
 ---
 ## 🧪 Step 7: Test the Pipeline
 1. **Modify app code & pipeline SCM run push image docker hub**:
-   add image from new image tag
+   ![image alt]()
 2. image updater observe
-    add image from repo
+    ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/image%20updater%20sync.png)
 3. **show argo cd health status of app**:
-    add image
+    ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/argo%20cd%20healthy%20app.png)
 4. **application acess**:
+    - get url for app
     ```bash
         minikube service list
     ```
-    add image
+    ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/service%20list%20for%20nodeapp.png)
 
-
-
-
-
-
-
+    - access it
+    ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/running%20app.png)
 
     
 
