@@ -119,7 +119,7 @@ Deploy a complete GitOps-driven CI/CD pipeline using Jenkins and ArgoCD on a Goo
 ---
 ## 🧪 Step 7: Test the Pipeline
 1. **Modify app code & pipeline SCM run push image docker hub**:
-   ![image alt]()
+   ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/42ff2953b6e86567cd885fd3cb66eaa0ba7b0eee/Images/docker%20hub%20new%20image%20tag.png)
 2. image updater observe
     ![image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/b7861a23136340a18e2c836795524da0b605c915/Images/image%20updater%20sync.png)
 3. **show argo cd health status of app**:
