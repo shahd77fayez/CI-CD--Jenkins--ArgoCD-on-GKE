@@ -53,7 +53,7 @@ Deploy a complete GitOps-driven CI/CD pipeline using Jenkins and ArgoCD on a Goo
     ```bash
     kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
     ```
-    ![ image alt](https://github.com/shahd77fayez/CI-CD--Jenkins--ArgoCD-on-GKE/blob/aad105677ddb0f362cd9526b8c51b590e2cdf69a/Images/argocd%20install%20and%20updater.png) 
+    add Image from Terimnal 
 2. **Expose ArgoCD Server**:
     ```bash
     kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
